@@ -82,9 +82,9 @@ function registrar() {
     cliente: cliente.nombre,
     telefono: cliente.telefono,
     equipo: equipo.trim(),
-    fecha: new Date().toLocaleDateString("es-MX")
-  });
-
+    fecha: new Date().toLocaleDateString("es-MX"),
+estado: "Recibido"
+});
   guardarDatos();
 
   mostrar(
