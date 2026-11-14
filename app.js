@@ -12,7 +12,28 @@ function iniciarAplicacion() {
   } catch (error) {
     equipos = [];
   }
+function registrarCliente() {
+  const nombre = prompt("Nombre completo del cliente:");
+  if (!nombre || !nombre.trim()) return;
 
+  const telefono = prompt("Número de teléfono:");
+  if (!telefono || !telefono.trim()) return;
+
+  const clientes = JSON.parse(
+    localStorage.getItem("celular360_clientes") || "[]"
+  );
+
+  clientes.push({
+    id: Date.now(),
+    nombre: nombre.trim(),
+    telefono: telefono.trim(),
+    fecha: new Date().toLocaleDateString("es-MX")
+  });
+
+  localStorage.setItem("celular360_clientes", JSON.stringify(clientes));
+
+  mostrar("Cliente registrado correctamente", nombre);
+}
   actualizarContador();
 }
 
