@@ -47,18 +47,50 @@ function mostrar(titulo, mensaje) {
 
 // REGISTRAR EQUIPO
 function registrar() {
+  if (clientes.length === 0) {
+    alert("Primero debes registrar un cliente.");
+    return;
+  }
+
+  let lista = "Selecciona el cliente:\n";
+
+  clientes.forEach((cliente, i) => {
+    lista += `${i + 1}. ${cliente.nombre} - ${cliente.telefono}\n`;
+  });
+
+  const seleccion = prompt(lista);
+  const indice = Number(seleccion) - 1;
+
+  if (
+    seleccion === null ||
+    !Number.isInteger(indice) ||
+    indice < 0 ||
+    indice >= clientes.length
+  ) {
+    alert("Selecciona un cliente válido.");
+    return;
+  }
+
+  const cliente = clientes[indice];
   const equipo = prompt("Marca y modelo del celular:");
 
   if (!equipo || !equipo.trim()) return;
 
   equipos.push({
     id: Date.now(),
+    clienteId: cliente.id,
+    cliente: cliente.nombre,
+    telefono: cliente.telefono,
     equipo: equipo.trim(),
     fecha: new Date().toLocaleDateString("es-MX")
   });
 
   guardarDatos();
-  mostrar("Equipo registrado correctamente", equipo);
+
+  mostrar(
+    "Equipo registrado correctamente",
+    equipo + " — Cliente: " + cliente.nombre
+  );
 }
 
 // REGISTRAR CLIENTE
