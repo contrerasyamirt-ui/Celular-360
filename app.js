@@ -76,15 +76,15 @@ function registrar() {
 
   if (!equipo || !equipo.trim()) return;
 
-  equipos.push({
+    equipos.push({
     id: Date.now(),
     clienteId: cliente.id,
     cliente: cliente.nombre,
     telefono: cliente.telefono,
     equipo: equipo.trim(),
     fecha: new Date().toLocaleDateString("es-MX"),
-estado: "Recibido"
-});
+    estado: "Recibido"
+  });
   guardarDatos();
 
   mostrar(
