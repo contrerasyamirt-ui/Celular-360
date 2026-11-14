@@ -174,5 +174,53 @@ function diagnostico() {
 
   mostrar("Diagnóstico registrado correctamente", equipo.equipo);
 }
-// INICIAR CUANDO CARGUE LA PÁGINA
+// MÓDULO DE HISTORIAL
+function historial() {
+  const diagnosticos = JSON.parse(
+    localStorage.getItem("celular360_diagnosticos") || "[]"
+  );
+
+  if (equipos.length === 0 && diagnosticos.length === 0) {
+    mostrar("Historial", "Todavía no hay registros.");
+    return;
+  }
+
+  let contenido = "";
+
+  contenido += "<h3>Equipos registrados</h3>";
+
+  equipos.forEach((equipo, i) => {
+    contenido += `
+      <p>
+        <strong>${i + 1}. ${equipo.equipo}</strong><br>
+        Cliente: ${equipo.cliente}<br>
+        Teléfono: ${equipo.telefono}<br>
+        Fecha: ${equipo.fecha}
+      </p>
+      <hr>
+    `;
+  });
+
+  contenido += "<h3>Diagnósticos registrados</h3>";
+
+  diagnosticos.forEach((d, i) => {
+    contenido += `
+      <p>
+        <strong>${i + 1}. ${d.equipo}</strong><br>
+        Cliente: ${d.cliente}<br>
+        Falla: ${d.falla}<br>
+        Diagnóstico: ${d.revision}<br>
+        Observaciones: ${d.observaciones}<br>
+        Fecha: ${d.fecha}
+      </p>
+      <hr>
+    `;
+  });
+
+  const resultado = document.getElementById("resultado");
+
+  if (resultado) {
+    resultado.innerHTML = contenido;
+  }
+}// INICIAR CUANDO CARGUE LA PÁGINA
 document.addEventListener("DOMContentLoaded", iniciarAplicacion);
