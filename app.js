@@ -194,6 +194,7 @@ function historial() {
       <p>
         <strong>${i + 1}. ${equipo.equipo}</strong><br>
         Cliente: ${equipo.cliente}<br>
+        Estado: ${equipo.estado || "Sin estado"}<br>
         Teléfono: ${equipo.telefono}<br>
         Fecha: ${equipo.fecha}
       </p>
