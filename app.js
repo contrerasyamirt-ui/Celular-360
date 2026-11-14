@@ -175,6 +175,7 @@ function diagnostico() {
   mostrar("Diagnóstico registrado correctamente", equipo.equipo);
 }
 // MÓDULO DE HISTORIAL
+
 function historial() {
   const diagnosticos = JSON.parse(
     localStorage.getItem("celular360_diagnosticos") || "[]"
@@ -198,6 +199,10 @@ function historial() {
         Teléfono: ${equipo.telefono}<br>
         Fecha: ${equipo.fecha}
       </p>
+
+      <button onclick="cambiarEstado(${equipo.id})">
+        Cambiar estado
+      </button>
       <hr>
     `;
   });
@@ -224,6 +229,52 @@ function historial() {
     resultado.innerHTML = contenido;
   }
 }
+
+
+function cambiarEstado(id) {
+  const equipo = equipos.find(e => e.id === id);
+
+  if (!equipo) {
+    alert("No se encontró el equipo.");
+    return;
+  }
+
+  const opcion = prompt(
+    "CAMBIAR ESTADO DE REPARACIÓN\n\n" +
+    "1. Recibido\n" +
+    "2. En diagnóstico\n" +
+    "3. Esperando refacción\n" +
+    "4. En reparación\n" +
+    "5. Reparado\n" +
+    "6. Entregado\n\n" +
+    "Escribe el número del nuevo estado:"
+  );
+
+  const estados = {
+    "1": "Recibido",
+    "2": "En diagnóstico",
+    "3": "Esperando refacción",
+    "4": "En reparación",
+    "5": "Reparado",
+    "6": "Entregado"
+  };
+
+  if (estados[opcion]) {
+    equipo.estado = estados[opcion];
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(equipos)
+    );
+
+    alert("Estado actualizado a: " + equipo.estado);
+    historial();
+
+  } else if (opcion !== null) {
+    alert("Opción no válida.");
+  }
+}
+
 // MÓDULO DE INVENTARIO
 function inventario() {
   let piezas = JSON.parse(
