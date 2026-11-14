@@ -222,5 +222,76 @@ function historial() {
   if (resultado) {
     resultado.innerHTML = contenido;
   }
+}
+// MÓDULO DE INVENTARIO
+function inventario() {
+  let piezas = JSON.parse(
+    localStorage.getItem("celular360_inventario") || "[]"
+  );
+
+  const opcion = prompt(
+    "INVENTARIO CELULAR 360\n\n" +
+    "1. Registrar refacción\n" +
+    "2. Consultar inventario"
+  );
+
+  if (opcion === "1") {
+    const nombre = prompt("Nombre de la refacción:");
+    if (!nombre || !nombre.trim()) return;
+
+    const cantidad = Number(prompt("Cantidad disponible:"));
+    if (!Number.isInteger(cantidad) || cantidad < 0) {
+      alert("Ingresa una cantidad válida.");
+      return;
+    }
+
+    const precio = Number(prompt("Precio por unidad:"));
+    if (!Number.isFinite(precio) || precio < 0) {
+      alert("Ingresa un precio válido.");
+      return;
+    }
+
+    piezas.push({
+      id: Date.now(),
+      nombre: nombre.trim(),
+      cantidad: cantidad,
+      precio: precio
+    });
+
+    localStorage.setItem(
+      "celular360_inventario",
+      JSON.stringify(piezas)
+    );
+
+    mostrar("Refacción registrada", nombre);
+    return;
+  }
+
+  if (opcion === "2") {
+    if (piezas.length === 0) {
+      mostrar("Inventario", "Todavía no hay refacciones registradas.");
+      return;
+    }
+
+    let contenido = "<h2>Inventario de refacciones</h2>";
+
+    piezas.forEach((pieza, i) => {
+      contenido += `
+        <p>
+          <strong>${i + 1}. ${pieza.nombre}</strong><br>
+          Existencias: ${pieza.cantidad}<br>
+          Precio por unidad: $${pieza.precio.toFixed(2)}
+        </p>
+        <hr>
+      `;
+    });
+
+    document.getElementById("resultado").innerHTML = contenido;
+    return;
+  }
+
+  if (opcion !== null) {
+    alert("Selecciona una opción válida.");
+  }
 }// INICIAR CUANDO CARGUE LA PÁGINA
 document.addEventListener("DOMContentLoaded", iniciarAplicacion);
