@@ -228,13 +228,13 @@ function inventario() {
   let piezas = JSON.parse(
     localStorage.getItem("celular360_inventario") || "[]"
   );
-
   const opcion = prompt(
     "INVENTARIO CELULAR 360\n\n" +
     "1. Registrar refacción\n" +
-    "2. Consultar inventario"
+    "2. Consultar inventario\n" +
+    "3. Descontar refacción utilizada"
   );
-
+  
   if (opcion === "1") {
     const nombre = prompt("Nombre de la refacción:");
     if (!nombre || !nombre.trim()) return;
@@ -266,9 +266,8 @@ function inventario() {
     mostrar("Refacción registrada", nombre);
     return;
   }
-
-  if (opcion === "2. Consultar inventario\n" +
-"3. Descontar refacción utilizada"
+  
+  if (opcion === "2") {
     if (piezas.length === 0) {
       mostrar("Inventario", "Todavía no hay refacciones registradas.");
       return;
