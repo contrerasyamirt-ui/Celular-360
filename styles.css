@@ -1,0 +1,91 @@
+
+:root {
+  --fondo: #101D32;
+    --panel: #1B2D48;
+      --azul: #1677D2;
+        --cian: #39C5F2;
+          --blanco: #FFFFFF;
+            --texto: #B8C9DC;
+            }
+
+            * {
+              box-sizing: border-box;
+              }
+
+              body {
+                margin: 0;
+                  font-family: Arial, sans-serif;
+                    background: var(--fondo);
+                      color: var(--blanco);
+                      }
+
+                      header {
+                        background: linear-gradient(135deg, var(--azul), #104B91);
+                          padding: 25px 20px;
+                            border-radius: 0 0 25px 25px;
+                            }
+
+                            header h1 {
+                              margin: 0;
+                                font-size: 28px;
+                                  letter-spacing: 1px;
+                                  }
+
+                                  header p {
+                                    color: #E4F5FF;
+                                      margin-bottom: 0;
+                                      }
+
+                                      main {
+                                        padding: 18px;
+                                          max-width: 850px;
+                                            margin: auto;
+                                            }
+
+                                            .panel {
+                                              background: var(--panel);
+                                                padding: 20px;
+                                                  border-radius: 17px;
+                                                    margin-bottom: 18px;
+                                                      border: 1px solid #304765;
+                                                      }
+
+                                                      .grid {
+                                                        display: grid;
+                                                          grid-template-columns: repeat(2, 1fr);
+                                                            gap: 12px;
+                                                            }
+
+                                                            button {
+                                                              border: 0;
+                                                                border-radius: 13px;
+                                                                  background: var(--azul);
+                                                                    color: white;
+                                                                      padding: 17px 10px;
+                                                                        font-size: 15px;
+                                                                          font-weight: bold;
+                                                                            cursor: pointer;
+                                                                            }
+
+                                                                            button:hover {
+                                                                              background: var(--cian);
+                                                                                color: var(--fondo);
+                                                                                }
+
+                                                                                .numero {
+                                                                                  color: var(--cian);
+                                                                                    font-size: 28px;
+                                                                                    }
+
+                                                                                    footer {
+                                                                                      text-align: center;
+                                                                                        color: var(--texto);
+                                                                                          padding: 25px;
+                                                                                          }
+
+                                                                                          @media (max-width: 380px) {
+                                                                                            .grid {
+                                                                                                grid-template-columns: 1fr;
+                                                                                                  }
+                                                                                                  }
+                                                                                                  
