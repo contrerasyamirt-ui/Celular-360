@@ -112,6 +112,67 @@ function registrarCliente() {
 
   mostrar("Cliente registrado correctamente", nombre);
 }
+// MÓDULO DE DIAGNÓSTICO
 
+function diagnostico() {
+  if (equipos.length === 0) {
+    alert("Primero debes registrar un equipo.");
+    return;
+  }
+
+  let lista = "Selecciona el equipo:\n";
+
+  equipos.forEach((equipo, i) => {
+    lista += `${i + 1}. ${equipo.equipo} - Cliente: ${equipo.cliente}\n`;
+  });
+
+  const seleccion = prompt(lista);
+
+  if (seleccion === null) return;
+
+  const indice = Number(seleccion) - 1;
+
+  if (
+    !Number.isInteger(indice) ||
+    indice < 0 ||
+    indice >= equipos.length
+  ) {
+    alert("Selecciona un equipo válido.");
+    return;
+  }
+
+  const equipo = equipos[indice];
+
+  const falla = prompt("¿Qué falla reporta el cliente?");
+  if (!falla || !falla.trim()) return;
+
+  const revision = prompt("Escribe el diagnóstico técnico:");
+  if (!revision || !revision.trim()) return;
+
+  const observaciones = prompt("Observaciones adicionales:") || "Sin observaciones";
+
+  const diagnosticos = JSON.parse(
+    localStorage.getItem("celular360_diagnosticos") || "[]"
+  );
+
+  diagnosticos.push({
+    id: Date.now(),
+    equipoId: equipo.id,
+    cliente: equipo.cliente,
+    telefono: equipo.telefono,
+    equipo: equipo.equipo,
+    falla: falla.trim(),
+    revision: revision.trim(),
+    observaciones: observaciones.trim(),
+    fecha: new Date().toLocaleDateString("es-MX")
+  });
+
+  localStorage.setItem(
+    "celular360_diagnosticos",
+    JSON.stringify(diagnosticos)
+  );
+
+  mostrar("Diagnóstico registrado correctamente", equipo.equipo);
+}
 // INICIAR CUANDO CARGUE LA PÁGINA
 document.addEventListener("DOMContentLoaded", iniciarAplicacion);
