@@ -1,91 +1,88 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-:root {
-  --fondo: #101D32;
-    --panel: #1B2D48;
-      --azul: #1677D2;
-        --cian: #39C5F2;
-          --blanco: #FFFFFF;
-            --texto: #B8C9DC;
-            }
+body {
+  font-family: Arial, sans-serif;
+  background: #101827;
+  color: #ffffff;
+  min-height: 100vh;
+}
 
-            * {
-              box-sizing: border-box;
-              }
+.encabezado {
+  background: #17243a;
+  padding: 28px 15px;
+  text-align: center;
+  border-bottom: 3px solid #00bcd4;
+}
 
-              body {
-                margin: 0;
-                  font-family: Arial, sans-serif;
-                    background: var(--fondo);
-                      color: var(--blanco);
-                      }
+.encabezado h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
 
-                      header {
-                        background: linear-gradient(135deg, var(--azul), #104B91);
-                          padding: 25px 20px;
-                            border-radius: 0 0 25px 25px;
-                            }
+.encabezado p {
+  color: #b8c7d9;
+}
 
-                            header h1 {
-                              margin: 0;
-                                font-size: 28px;
-                                  letter-spacing: 1px;
-                                  }
+.contenedor {
+  width: 92%;
+  max-width: 650px;
+  margin: 25px auto;
+}
 
-                                  header p {
-                                    color: #E4F5FF;
-                                      margin-bottom: 0;
-                                      }
+.resumen,
+.modulos,
+.resultado {
+  background: #1b2a41;
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
 
-                                      main {
-                                        padding: 18px;
-                                          max-width: 850px;
-                                            margin: auto;
-                                            }
+.resumen {
+  text-align: center;
+}
 
-                                            .panel {
-                                              background: var(--panel);
-                                                padding: 20px;
-                                                  border-radius: 17px;
-                                                    margin-bottom: 18px;
-                                                      border: 1px solid #304765;
-                                                      }
+.resumen h2,
+.modulos h2 {
+  margin-bottom: 15px;
+}
 
-                                                      .grid {
-                                                        display: grid;
-                                                          grid-template-columns: repeat(2, 1fr);
-                                                            gap: 12px;
-                                                            }
+.resumen strong {
+  display: block;
+  font-size: 42px;
+  color: #00e5ff;
+  margin-top: 10px;
+}
 
-                                                            button {
-                                                              border: 0;
-                                                                border-radius: 13px;
-                                                                  background: var(--azul);
-                                                                    color: white;
-                                                                      padding: 17px 10px;
-                                                                        font-size: 15px;
-                                                                          font-weight: bold;
-                                                                            cursor: pointer;
-                                                                            }
+button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 9px;
+  background: #007f9e;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-                                                                            button:hover {
-                                                                              background: var(--cian);
-                                                                                color: var(--fondo);
-                                                                                }
+button:active {
+  background: #005f75;
+}
 
-                                                                                .numero {
-                                                                                  color: var(--cian);
-                                                                                    font-size: 28px;
-                                                                                    }
+.resultado {
+  min-height: 100px;
+  line-height: 1.6;
+}
 
-                                                                                    footer {
-                                                                                      text-align: center;
-                                                                                        color: var(--texto);
-                                                                                          padding: 25px;
-                                                                                          }
-
-                                                                                          @media (max-width: 380px) {
-                                                                                            .grid {
-                                                                                                grid-template-columns: 1fr;
-                                                                                                  }
-                                                                                                  }
-                                                                                                  
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #9aabc0;
+}
