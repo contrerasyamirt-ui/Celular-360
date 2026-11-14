@@ -1,5 +1,4 @@
-// CELULAR 360
-// Sistema de gestión para taller de reparación de celulares
+// CELULAR 360 - Registro de equipos
 
 "use strict";
 
@@ -28,6 +27,29 @@ function actualizarContador() {
   if (contador) {
     contador.textContent = equipos.length;
   }
+}
+
+function mostrar(titulo, mensaje) {
+  document.getElementById("resultado").innerHTML =
+    `<h2>${titulo}</h2><p>${mensaje}</p>`;
+}
+
+function registrar() {
+  const equipo = prompt("Escribe la marca y modelo del celular:");
+
+  if (!equipo || !equipo.trim()) {
+    return;
+  }
+
+  equipos.push({
+    id: Date.now(),
+    equipo: equipo.trim(),
+    fecha: new Date().toLocaleDateString("es-MX")
+  });
+
+  guardarDatos();
+
+  mostrar("Equipo registrado correctamente", equipo);
 }
 
 document.addEventListener("DOMContentLoaded", iniciarAplicacion);
