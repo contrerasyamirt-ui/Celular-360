@@ -267,7 +267,8 @@ function inventario() {
     return;
   }
 
-  if (opcion === "2") {
+  if (opcion === "2. Consultar inventario\n" +
+"3. Descontar refacción utilizada"
     if (piezas.length === 0) {
       mostrar("Inventario", "Todavía no hay refacciones registradas.");
       return;
@@ -289,7 +290,62 @@ function inventario() {
     document.getElementById("resultado").innerHTML = contenido;
     return;
   }
+  // DESCONTAR REFACCIÓN UTILIZADA
+  if (opcion === "3") {
+    if (piezas.length === 0) {
+      alert("No hay refacciones registradas.");
+      return;
+    }
 
+    let lista = "Selecciona la refacción:\n";
+
+    piezas.forEach((pieza, i) => {
+      lista += `${i + 1}. ${pieza.nombre} - Existencias: ${pieza.cantidad}\n`;
+    });
+
+    const seleccion = prompt(lista);
+
+    if (seleccion === null) return;
+
+    const indice = Number(seleccion) - 1;
+
+    if (
+      !Number.isInteger(indice) ||
+      indice < 0 ||
+      indice >= piezas.length
+    ) {
+      alert("Selecciona una refacción válida.");
+      return;
+    }
+
+    const cantidad = Number(prompt("¿Cuántas piezas utilizaste?"));
+
+    if (!Number.isInteger(cantidad) || cantidad <= 0) {
+      alert("Ingresa una cantidad válida.");
+      return;
+    }
+
+    if (cantidad > piezas[indice].cantidad) {
+      alert("No hay suficientes piezas en existencia.");
+      return;
+    }
+
+    piezas[indice].cantidad -= cantidad;
+
+    localStorage.setItem(
+      "celular360_inventario",
+      JSON.stringify(piezas)
+    );
+
+    mostrar(
+      "Inventario actualizado",
+      "Piezas restantes de " +
+      piezas[indice].nombre + ": " +
+      piezas[indice].cantidad
+    );
+
+    return;
+  }
   if (opcion !== null) {
     alert("Selecciona una opción válida.");
   }
