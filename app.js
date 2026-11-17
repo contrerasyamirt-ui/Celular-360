@@ -239,6 +239,10 @@ function cambiarEstado(id) {
     return;
   }
 
+Enviado hace 1 min
+Escribir mensaje
+Escribe en
+
   const opcion = prompt(
     "CAMBIAR ESTADO DE REPARACIÓN\n\n" +
     "1. Recibido\n" +
@@ -274,7 +278,37 @@ function cambiarEstado(id) {
     alert("Opción no válida.");
   }
 }
+function reparacionesPendientes() {
+  const pendientes = equipos.filter(
+    equipo => equipo.estado !== "Entregado"
+  );
 
+  if (pendientes.length === 0) {
+    mostrar("Reparaciones pendientes", "No hay reparaciones pendientes.");
+    return;
+  }
+
+  let contenido = "<h3>Reparaciones pendientes</h3>";
+
+  pendientes.forEach((equipo, i) => {
+    contenido += `
+      <p>
+        <strong>${i + 1}. ${equipo.equipo}</strong><br>
+        Cliente: ${equipo.cliente || "No registrado"}<br>
+        Teléfono: ${equipo.telefono || "No registrado"}<br>
+        Estado: ${equipo.estado || "Sin estado"}<br>
+        Fecha: ${equipo.fecha}
+      </p>
+      <hr>
+    `;
+  });
+
+  const resultado = document.getElementById("resultado");
+
+  if (resultado) {
+    resultado.innerHTML = contenido;
+  }
+}
 // MÓDULO DE INVENTARIO
 function inventario() {
   let piezas = JSON.parse(
